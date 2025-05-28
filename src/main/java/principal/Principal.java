@@ -1,7 +1,11 @@
 package principal;
 
+import visao.FrmMenuPrincipal;
+
 public class Principal {
+
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FrmMenuPrincipal objetotela = new FrmMenuPrincipal();
+        objetotela.setVisible(true);
     }
 }
