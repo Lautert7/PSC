@@ -32,9 +32,9 @@
                 <Property name="text" type="java.lang.String" value="Cadastrar Produto"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemMovimenta&#xe7;&#xe3;o">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemGerenciarEstoque">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Movimenta&#xe7;&#xe3;o de Estoque"/>
+                <Property name="text" type="java.lang.String" value="Gerenciar Estoque"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBalan&#xe7;o">

@@ -32,7 +32,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuArquivo = new javax.swing.JMenu();
         jMenuItemCadastrarProduto = new javax.swing.JMenuItem();
-        jMenuItemMovimentação = new javax.swing.JMenuItem();
+        jMenuItemGerenciarEstoque = new javax.swing.JMenuItem();
         jMenuItemBalanço = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuSobre = new javax.swing.JMenu();
@@ -51,8 +51,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemCadastrarProduto.setText("Cadastrar Produto");
         jMenuArquivo.add(jMenuItemCadastrarProduto);
 
-        jMenuItemMovimentação.setText("Movimentação de Estoque");
-        jMenuArquivo.add(jMenuItemMovimentação);
+        jMenuItemGerenciarEstoque.setText("Gerenciar Estoque");
+        jMenuArquivo.add(jMenuItemGerenciarEstoque);
 
         jMenuItemBalanço.setText("Balanço Físico/Financeiro");
         jMenuArquivo.add(jMenuItemBalanço);
@@ -133,7 +133,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItemBalanço;
     private javax.swing.JMenuItem jMenuItemCadastrarProduto;
-    private javax.swing.JMenuItem jMenuItemMovimentação;
+    private javax.swing.JMenuItem jMenuItemGerenciarEstoque;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuSobre;
     // End of variables declaration//GEN-END:variables
