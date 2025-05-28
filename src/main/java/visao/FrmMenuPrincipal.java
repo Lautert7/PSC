@@ -66,6 +66,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuArquivo.add(jMenuItemCadastrarProduto);
 
         jMenuItemGerenciarEstoque.setText("Gerenciar Estoque");
+        jMenuItemGerenciarEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGerenciarEstoqueActionPerformed(evt);
+            }
+        });
         jMenuArquivo.add(jMenuItemGerenciarEstoque);
 
         jMenuItemBalanço.setText("Balanço Físico/Financeiro");
@@ -118,6 +123,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         FrmCadastroProduto objeto = new FrmCadastroProduto();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadastrarProdutoActionPerformed
+
+    private void jMenuItemGerenciarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGerenciarEstoqueActionPerformed
+        FrmGerenciarEstoque objeto = new FrmGerenciarEstoque();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemGerenciarEstoqueActionPerformed
 
     /**
      * @param args the command line arguments
