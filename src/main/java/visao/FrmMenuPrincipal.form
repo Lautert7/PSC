@@ -46,10 +46,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemGerenciarEstoqueActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBalan&#xe7;o">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuIteMovimenta&#xe7;&#xe3;o">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Balan&#xe7;o F&#xed;sico/Financeiro"/>
+                <Property name="text" type="java.lang.String" value="Movimenta&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuIteMovimenta&#xe7;&#xe3;oActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSair">
               <Properties>

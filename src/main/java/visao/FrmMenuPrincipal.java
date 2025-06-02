@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package visao;
 
-/**
- *
- * @author joaof
- */
+
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
     /**
@@ -34,7 +28,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuArquivo = new javax.swing.JMenu();
         jMenuItemCadastrarProduto = new javax.swing.JMenuItem();
         jMenuItemGerenciarEstoque = new javax.swing.JMenuItem();
-        jMenuItemBalanço = new javax.swing.JMenuItem();
+        jMenuIteMovimentação = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuSobre = new javax.swing.JMenu();
 
@@ -73,8 +67,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuArquivo.add(jMenuItemGerenciarEstoque);
 
-        jMenuItemBalanço.setText("Balanço Físico/Financeiro");
-        jMenuArquivo.add(jMenuItemBalanço);
+        jMenuIteMovimentação.setText("Movimentação");
+        jMenuIteMovimentação.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuIteMovimentaçãoActionPerformed(evt);
+            }
+        });
+        jMenuArquivo.add(jMenuIteMovimentação);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +128,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuItemGerenciarEstoqueActionPerformed
 
+    private void jMenuIteMovimentaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIteMovimentaçãoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuIteMovimentaçãoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,7 +174,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuArquivo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItemBalanço;
+    private javax.swing.JMenuItem jMenuIteMovimentação;
     private javax.swing.JMenuItem jMenuItemCadastrarProduto;
     private javax.swing.JMenuItem jMenuItemGerenciarEstoque;
     private javax.swing.JMenuItem jMenuItemSair;

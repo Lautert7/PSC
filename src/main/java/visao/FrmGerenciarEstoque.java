@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package visao;
 
-/**
- *
- * @author joaof
- */
+
 public class FrmGerenciarEstoque extends javax.swing.JFrame {
 
     /**
@@ -52,13 +46,13 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
 
         jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Produto", "Preço", "Estoque", "Tamanho"
+                "ID", "Produto", "Preço", "Estoque", "Tamanho", "Qtd Min.", "Qtd Max."
             }
         ));
         jScrollPane1.setViewportView(jTableProdutos);
