@@ -1,14 +1,36 @@
-
 package visao;
 
+import modelo.Produto;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmGerenciarEstoque extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmGerenciarEstoque
-     */
+    private Produto objetoproduto;
+
     public FrmGerenciarEstoque() {
         initComponents();
+        this.objetoproduto = new Produto();
+        this.carregaTabela();
+    }
+
+    public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
+        modelo.setNumRows(0);
+
+        ArrayList<Produto> minhaLista = objetoProduto.getMinhaLista();
+        for (Produto a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getProduto(),
+                a.getPreço(),
+                a.getEstoque(),
+                a.getTamanho(),
+                a.getQtdMin(),
+                a.getQtdMax()
+            });
+        }
     }
 
     /**
@@ -21,20 +43,15 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableProdutos = new javax.swing.JTable();
+        JTableProdutos = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         JTFQuantidadeEstoque = new javax.swing.JTextField();
         JTFQuantidadeMin = new javax.swing.JTextField();
         JTFQuantidadeMax = new javax.swing.JTextField();
-        JCBtamanho = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         JTFproduto = new javax.swing.JTextField();
         JTFpreço = new javax.swing.JTextField();
-        JTFunidade = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         JBCancelar = new javax.swing.JButton();
@@ -44,32 +61,29 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciamento de Estoque");
 
-        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        JTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Produto", "Preço", "Estoque", "Tamanho", "Qtd Min.", "Qtd Max."
+                "ID", "Produto", "Preço", "Quantidade", "Qtd Min.", "Qtd Max."
             }
         ));
-        jScrollPane1.setViewportView(jTableProdutos);
+        JTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTableProdutosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(JTableProdutos);
 
         jLabel8.setText("Quantidade Máxima em Estoque:");
-
-        JCBtamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pequeno", "Médio", "Grande" }));
-
-        jLabel9.setText("Tamanho:");
 
         jLabel1.setText("Produto:");
 
         jLabel2.setText("Preço:");
-
-        jLabel3.setText("Unidade(s):");
-
-        jLabel5.setText("Categoria:");
 
         JTFproduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,19 +122,11 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JTFproduto, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)
-                                .addComponent(JTFpreço)
-                                .addComponent(JTFunidade))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(JCBtamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JTFproduto, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFpreço))
                         .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8)
@@ -144,7 +150,7 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -165,18 +171,8 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addGap(2, 2, 2)
-                        .addComponent(JTFpreço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(5, 5, 5)
-                        .addComponent(JTFunidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JCBtamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addComponent(JTFpreço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBAlterar)
@@ -198,6 +194,21 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
+
+    private void JTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableProdutosMouseClicked
+        if (this.JTableProdutos.getSelectedRow() != -1) {
+            String produto = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 1).toString();
+            String preço = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 2).toString();
+            String Quantidade = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 4).toString();
+            String QuantidadeMin = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 5).toString();
+            String QuantidadeMax = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 6).toString();
+            this.JTFproduto.setText(produto);
+            this.JTFpreço.setText(preço);
+            this.JTFQuantidadeEstoque.setText(Quantidade);
+            this.JTFQuantidadeMin.setText(QuantidadeMin);
+            this.JTFQuantidadeMax.setText(QuantidadeMax);
+        }
+    }//GEN-LAST:event_JTableProdutosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -238,22 +249,17 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
     private javax.swing.JButton JBAlterar;
     private javax.swing.JButton JBApagar;
     private javax.swing.JButton JBCancelar;
-    private javax.swing.JComboBox<String> JCBtamanho;
     private javax.swing.JTextField JTFQuantidadeEstoque;
     private javax.swing.JTextField JTFQuantidadeMax;
     private javax.swing.JTextField JTFQuantidadeMin;
     private javax.swing.JTextField JTFpreço;
     private javax.swing.JTextField JTFproduto;
-    private javax.swing.JTextField JTFunidade;
+    private javax.swing.JTable JTableProdutos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableProdutos;
     // End of variables declaration//GEN-END:variables
 }

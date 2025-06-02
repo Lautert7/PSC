@@ -29,6 +29,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jMenuItemCadastrarProduto = new javax.swing.JMenuItem();
         jMenuItemGerenciarEstoque = new javax.swing.JMenuItem();
         jMenuIteMovimentação = new javax.swing.JMenuItem();
+        jMenuItemCategoria = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuSobre = new javax.swing.JMenu();
 
@@ -74,6 +75,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuArquivo.add(jMenuIteMovimentação);
+
+        jMenuItemCategoria.setText("Categoria");
+        jMenuItemCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCategoriaActionPerformed(evt);
+            }
+        });
+        jMenuArquivo.add(jMenuItemCategoria);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +138,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemGerenciarEstoqueActionPerformed
 
     private void jMenuIteMovimentaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIteMovimentaçãoActionPerformed
-        // TODO add your handling code here:
+         FrmMovimentação objeto = new FrmMovimentação();
+        objeto.setVisible(true);
     }//GEN-LAST:event_jMenuIteMovimentaçãoActionPerformed
+
+    private void jMenuItemCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCategoriaActionPerformed
+         FrmCategoria objeto = new FrmCategoria();
+        objeto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +191,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuIteMovimentação;
     private javax.swing.JMenuItem jMenuItemCadastrarProduto;
+    private javax.swing.JMenuItem jMenuItemCategoria;
     private javax.swing.JMenuItem jMenuItemGerenciarEstoque;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuSobre;

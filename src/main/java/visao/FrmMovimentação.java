@@ -35,7 +35,7 @@ public class FrmMovimentação extends javax.swing.JFrame {
         JTFid = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableProdutos = new javax.swing.JTable();
+        jTableMovimentação = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         JTFtipo = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
@@ -65,7 +65,7 @@ public class FrmMovimentação extends javax.swing.JFrame {
 
         jLabel1.setText("Produto:");
 
-        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMovimentação.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -76,7 +76,7 @@ public class FrmMovimentação extends javax.swing.JFrame {
                 "ID", "Produto", "Unidades", "Data", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(jTableProdutos);
+        jScrollPane1.setViewportView(jTableMovimentação);
 
         jLabel4.setText("Tipo:");
 
@@ -226,6 +226,6 @@ public class FrmMovimentação extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableProdutos;
+    private javax.swing.JTable jTableMovimentação;
     // End of variables declaration//GEN-END:variables
 }
