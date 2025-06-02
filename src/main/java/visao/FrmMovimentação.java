@@ -67,13 +67,13 @@ public class FrmMovimentação extends javax.swing.JFrame {
 
         jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Produto", "Unidades", "Data"
+                "ID", "Produto", "Unidades", "Data", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(jTableProdutos);
