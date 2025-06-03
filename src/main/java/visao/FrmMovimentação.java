@@ -1,14 +1,10 @@
- /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package visao;
 
-/**
- *
- * @author joaof
- */
+import javax.swing.JOptionPane;
+
 public class FrmMovimentação extends javax.swing.JFrame {
+
 
     /**
      * Creates new form FrmMovimentação
@@ -95,6 +91,11 @@ public class FrmMovimentação extends javax.swing.JFrame {
         });
 
         JBApagar.setText("Apagar");
+        JBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBApagarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,8 +183,103 @@ public class FrmMovimentação extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
-        // TODO add your handling code here:
+          try {
+// recebendo e validando dados da interface gráfica.
+            int id = 0;
+            String produto = "";
+            int quantidade = 0;
+            int data = 0;
+            int tipo = 0;
+            if (this.JTFproduto.getText().length() < 2) {
+                throw new Mensagem("Produto deve conter ao menos 2 caracteres.");
+            } else {
+                produto = this.JTFproduto.getText();
+            }
+            if (this.JTFid.getText().length() <= 0) {
+                throw new Mensagem("O preço deve ser número e maior que zero.");
+            } else {
+                id = Integer.parseInt(this.JTFid.getText());
+            }
+            if (this.JTFQuantidade.getText().length() < 0) {
+                throw new Mensagem("A quandidade em estoque deve ser um número.");
+            } else {
+                quantidade = Integer.parseInt(this.JTFQuantidade.getText());
+            }
+            if (this.JTFdata.getText().length() <= 0) {
+                throw new Mensagem("A data deve ser número e maior que zero.");
+            } else {
+                data = Integer.parseInt(this.JTFdata.getText());
+            }
+            if (this.JTFtipo.getText().length() <= 0) {
+                throw new Mensagem("Tipo deve conter apenas letras.");
+            } else {
+                tipo = Integer.parseInt(this.JTFtipo.getText());
+            }
+            if (this.jTableMovimentação.getSelectedRow() == -1) {
+                throw new Mensagem("Primeiro Selecione um Produto para Alterar");
+            } else {
+                id = Integer.parseInt(this.jTableMovimentação.getValueAt(this.jTableMovimentação.getSelectedRow(), 0).toString());
+            }
+// envia os dados para o Aluno processar
+            if (this.objetoproduto.updateProdutoBD(id, produto, quantidade, data, tipo)) {
+// limpa os campos
+                this.JTFid.setText("");
+                this.JTFproduto.setText("");
+                this.JTFQuantidade.setText("");
+                this.JTFdata.setText("");
+                this.JTFtipo.setText("");
+                JOptionPane.showMessageDialog(rootPane, "Produto Alterado com Sucesso!");
+            }
+//Exibe no console o aluno cadastrado
+            System.out.println(this.objetoproduto.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        } finally {
+// atualiza a tabela.
+            carregaTabela();
+        }
+
     }//GEN-LAST:event_JBAlterarActionPerformed
+
+    private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
+        try {
+// validando dados da interface gráfica.
+            int id = 0;
+            if (this.jTableMovimentação.getSelectedRow() == -1) {
+                throw new Mensagem(
+                        "Primeiro Selecione um Produto para APAGAR");
+            } else {
+                id = Integer.parseInt(this.jTableMovimentação.
+                        getValueAt(this.jTableMovimentação.getSelectedRow(), 0).
+                        toString());
+            }
+// retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
+            int respostaUsuario = JOptionPane.
+                    showConfirmDialog(null,
+                            "Tem certeza que deseja apagar este Produto ?");
+            if (respostaUsuario == 0) {// clicou em SIM
+// envia os dados para o Aluno processar
+                if (this.objetoproduto.deleteProdutoBD(id)) {
+// limpa os campos
+                    this.JTFid.setText("");
+                    this.JTFproduto.setText("");
+                    this.JTFQuantidade.setText("");
+                    this.JTFdata.setText("");
+                    this.JTFtipo.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Produto Apagado com Sucesso!");
+                }
+            }
+// atualiza a tabela.
+            System.out.println(this.objetoproduto.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+// atualiza a tabela.
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBApagarActionPerformed
 
     /**
      * @param args the command line arguments
