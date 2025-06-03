@@ -1,6 +1,8 @@
 
 package visao;
 
+import javax.swing.JOptionPane;
+
 public class FrmCategoria extends javax.swing.JFrame {
 
 
@@ -47,6 +49,12 @@ public class FrmCategoria extends javax.swing.JFrame {
         jLabel2.setText("Produto:");
 
         jLabel3.setText("Embalagem(papelao, metal..):");
+
+        JTFembalagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFembalagemActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Tamanho(grande, medio, pequeno):");
 
@@ -136,8 +144,58 @@ public class FrmCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
-        // TODO add your handling code here:
+         try {
+// recebendo e validando dados da interface gráfica.
+            int id = 0;
+            String produto = "";
+            String embalagem = "";
+            String tamanho = "";
+            
+            if (this.JTFproduto.getText().length() < 2) {
+                throw new Mensagem("Produto deve conter ao menos 2 caracteres.");
+            } else {
+                produto = this.JTFproduto.getText();
+            }
+            if (this.JTFid.getText().length() <= 0) {
+                throw new Mensagem("O Id deve ser número e maior que zero.");
+            } else {
+                id = Integer.parseInt(this.JTFid.getText());
+            }
+            if (this.JTFembalagem.getText().length() < 2) {
+                throw new Mensagem("Embalagem deve conter ao menos 2 caracteres.");
+            } else {
+                embalagem = this.JTFembalagem.getText();
+            }
+            if (this.JTFtamanho.getText().length() < 2) {
+                throw new Mensagem("Tamanho deve conter ao menos 2 caracteres.");
+            } else {
+                tamanho = this.JTFtamanho.getText();
+            }
+            
+// envia os dados para o Aluno processar
+            if (this.objetoproduto.updateProdutoBD(id, produto, embalagem, tamanho)) {
+// limpa os campos
+                this.JTFid.setText("");
+                this.JTFproduto.setText("");
+                this.JTFembalagem.setText("");
+                this.JTFtamanho.setText("");
+                JOptionPane.showMessageDialog(rootPane, "Produto Alterado com Sucesso!");
+            }
+//Exibe no console o aluno cadastrado
+            System.out.println(this.objetoproduto.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        } finally {
+// atualiza a tabela.
+            carregaTabela();
+        }
     }//GEN-LAST:event_JBAlterarActionPerformed
+
+    private void JTFembalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFembalagemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFembalagemActionPerformed
 
 
     public static void main(String args[]) {

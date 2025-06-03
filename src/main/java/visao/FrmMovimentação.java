@@ -189,7 +189,7 @@ public class FrmMovimentação extends javax.swing.JFrame {
             String produto = "";
             int quantidade = 0;
             int data = 0;
-            int tipo = 0;
+            String tipo = "";
             if (this.JTFproduto.getText().length() < 2) {
                 throw new Mensagem("Produto deve conter ao menos 2 caracteres.");
             } else {
@@ -213,7 +213,7 @@ public class FrmMovimentação extends javax.swing.JFrame {
             if (this.JTFtipo.getText().length() <= 0) {
                 throw new Mensagem("Tipo deve conter apenas letras.");
             } else {
-                tipo = Integer.parseInt(this.JTFtipo.getText());
+                tipo = this.JTFtipo.getText();
             }
             if (this.jTableMovimentação.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um Produto para Alterar");
