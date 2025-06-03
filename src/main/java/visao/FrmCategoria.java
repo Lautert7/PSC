@@ -73,6 +73,11 @@ public class FrmCategoria extends javax.swing.JFrame {
         });
 
         JBApagar.setText("Apagar");
+        JBApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBApagarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,6 +201,43 @@ public class FrmCategoria extends javax.swing.JFrame {
     private void JTFembalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFembalagemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFembalagemActionPerformed
+
+    private void JBApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBApagarActionPerformed
+        try {
+// validando dados da interface gráfica.
+            int id = 0;
+            if (this.jTableCategoria.getSelectedRow() == -1) {
+                throw new Mensagem(
+                        "Primeiro Selecione um Produto para APAGAR");
+            } else {
+                id = Integer.parseInt(this.jTableCategoria.
+                        getValueAt(this.jTableCategoria.getSelectedRow(), 0).
+                        toString());
+            }
+// retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
+            int respostaUsuario = JOptionPane.
+                    showConfirmDialog(null,
+                            "Tem certeza que deseja apagar este Produto ?");
+            if (respostaUsuario == 0) {// clicou em SIM
+// envia os dados para o Aluno processar
+                if (this.objetoproduto.deleteProdutoBD(id)) {
+// limpa os campos
+                    this.JTFid.setText("");
+                    this.JTFproduto.setText("");
+                    this.JTFembalagem.setText("");
+                    this.JTFtamanho.setText("");
+                    JOptionPane.showMessageDialog(rootPane, "Produto Apagado com Sucesso!");
+                }
+            }
+// atualiza a tabela.
+            System.out.println(this.objetoproduto.getMinhaLista().toString());
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } finally {
+// atualiza a tabela.
+            carregaTabela();
+        }
+    }//GEN-LAST:event_JBApagarActionPerformed
 
 
     public static void main(String args[]) {
