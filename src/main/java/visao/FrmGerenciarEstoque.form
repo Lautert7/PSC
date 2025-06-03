@@ -29,13 +29,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="576" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="JTFproduto" alignment="0" pref="236" max="32767" attributes="0"/>
+                          <Component id="JTFproduto" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="JTFpreço" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JTFpreço" alignment="0" pref="236" max="32767" attributes="0"/>
+                          <Component id="jLabel3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="JTFid" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -65,11 +68,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="155" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JTFQuantidadeEstoque" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JTFQuantidadeEstoque" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JTFid" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
@@ -79,7 +88,7 @@
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Component id="JTFQuantidadeMax" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                       <Component id="JTFproduto" min="-2" max="-2" attributes="0"/>
@@ -183,11 +192,27 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBAlterarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBApagar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Apagar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBApagarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ID:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="JTFid">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTFidActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

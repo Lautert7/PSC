@@ -181,7 +181,7 @@ private Produto objetoproduto;
                 qtdmax = Integer.parseInt(this.JTFQuantidadeMax.getText());
             }
 // envia os dados para o Controlador cadastrar
-            if (this.objetoproduto.insetProdutoBD(produto, preço, unidade, quantidade, qtdmin, qtdmax)) {
+            if (this.objetoproduto.insetProdutoBD(produto, preço, quantidade, qtdmin, qtdmax)) {
                 JOptionPane.showMessageDialog(null, "Produto Cadastrado com Sucesso!");
 // limpa campos da interface
                 this.JTFproduto.setText("");
