@@ -1,45 +1,78 @@
-# Lista de Preços
 
-Programa simples para cadastrar produtos e mostrar lista de preços. Trabalho realizado por Kayky, Arthur, Eduardo e João.
+---
 
-## Como usar
+## ✅ Requisitos do Sistema
 
-1. Criar o banco de dados:
-```
-mysql -u root -p < banco.sql
-```
+- Java 11 ou superior  
+- MySQL  
+- IDE Java (preferencialmente Apache NetBeans)
 
-2. Compilar o programa:
-```
-javac ListaPrecos.java
-```
+⚠️ **Banco de Dados:**  
+Usuário: `root`  
+Senha: `TrabalhoA3`  
 
-3. Executar:
-```
-java ListaPrecos
-```
+---
 
-## O que o programa faz
+## 🗂️ Requisitos Funcionais e Não Funcionais
 
-- Cadastra produtos com nome e preço
-- Mostra lista de preços dos produtos cadastrados
+<details>
+  <summary><strong>➕ Funcionais</strong></summary>
 
-## Requisitos Funcionais
+- Cadastro de produtos (nome, preço, unidade, estoque mínimo/máximo, categoria)  
+- Cadastro de categorias (nome, tamanho, embalagem)  
+- Movimentação de estoque (entrada e saída)  
+- Alertas de estoque (abaixo do mínimo ou acima do máximo)  
+- Reajuste de preços por percentual  
+- Geração de relatórios gerenciais  
+- Interface gráfica para interação
+</details>
 
-- RF01: Sistema deve permitir cadastrar produtos com nome e preço
-- RF02: Sistema deve exibir lista de preços ordenada por nome do produto
-- RF03: Sistema deve permitir a navegação através de um menu de opções
-- RF04: Sistema deve permitir encerrar o programa através do menu
+<details>
+  <summary><strong>➖ Não Funcionais</strong></summary>
 
-## Requisitos Não Funcionais
+- Uso do padrão DAO  
+- Persistência em MySQL  
+- Boas práticas de codificação  
+- Controle de versão colaborativo  
+- Sistema simples, funcional e documentado  
+</details>
 
-- RNF01: Sistema deve ser executado em terminal/console
-- RNF02: Sistema deve utilizar banco de dados MySQL para persistência dos dados
-- RNF03: Sistema deve exibir valores monetários formatados com duas casas decimais
-- RNF04: Sistema deve tratar e exibir mensagens de erro de forma amigável ao usuário
-- RNF05: Sistema deve manter os produtos ordenados alfabeticamente na listagem
+---
 
-## Tecnologias Utilizadas
+## 🎯 Objetivos Acadêmicos
 
-- Java 8
-- MySQL
+- Aplicar conceitos de modelagem e desenvolvimento de sistemas  
+- Praticar o padrão de projeto **DAO**  
+- Desenvolver trabalho colaborativo com **Git/GitHub**  
+- Criar aplicação funcional com **interface gráfica**  
+
+---
+
+## 🚀 Como Rodar o Projeto
+
+1. Clone o repositório:  
+   `git clone <URL-do-repositório>`  
+2. Configure o MySQL com o script disponível na pasta `/db`  
+3. Abra o projeto na sua IDE Java  
+4. Execute a aplicação  
+
+---
+
+## 🎬 Usuários
+
+- Arthur Kroth Posselt  Arthur-Kroth Cesar Augusto dos Santos 10725115044 
+- Cesar Augusto dos Santos c3sarrr 10725115592
+- Eduardo Severino de Jesus edujesusss 1072514795
+- João Rodrigo Fortkamp Silva joao-fortkamp06 10725111602
+- Kayky de Souza Lautert - Lautert7 1072511581
+  
+
+---
+
+## 💡 Observações Finais
+
+Este projeto é exclusivamente acadêmico, com foco didático em desenvolvimento de sistemas com interface gráfica e banco de dados.  
+Contribuições e feedbacks são bem-vindos!
+
+---
+
