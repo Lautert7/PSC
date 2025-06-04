@@ -178,7 +178,7 @@ public class FrmCategoria extends javax.swing.JFrame {
             }
             
 // envia os dados para o Aluno processar
-            if (this.objetoproduto.updateProdutoBD(id, produto, embalagem, tamanho)) {
+            if (this.objeto.updateProdutoBD(id, produto, embalagem, tamanho)) {
 // limpa os campos
                 this.JTFid.setText("");
                 this.JTFproduto.setText("");
@@ -187,7 +187,7 @@ public class FrmCategoria extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Produto Alterado com Sucesso!");
             }
 //Exibe no console o aluno cadastrado
-            System.out.println(this.objetoproduto.getMinhaLista().toString());
+            System.out.println(this.objeto.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {

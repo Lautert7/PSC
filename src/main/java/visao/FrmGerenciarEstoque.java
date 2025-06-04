@@ -19,7 +19,7 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) this.JTableProdutos.getModel();
         modelo.setNumRows(0);
 
-        ArrayList<Produto> minhaLista = objetoProduto.getMinhaLista();
+        ArrayList<Produto> minhaLista = objetoproduto.getMinhaLista();
         for (Produto a : minhaLista) {
             modelo.addRow(new Object[]{
                 a.getId(),

@@ -6,11 +6,11 @@ import javax.swing.JOptionPane;
 
 public class FrmCadastroProduto extends javax.swing.JFrame {
     
-private Produto objetoproduto;
+private Produto objeto;
 
     public FrmCadastroProduto() {
         initComponents();
-        this.objetoProduto = new Produto();
+        this.objeto = new Produto();
     }
 
     /**
@@ -181,7 +181,7 @@ private Produto objetoproduto;
                 qtdmax = Integer.parseInt(this.JTFQuantidadeMax.getText());
             }
 // envia os dados para o Controlador cadastrar
-            if (this.objetoproduto.insetProdutoBD(produto, preço, quantidade, qtdmin, qtdmax)) {
+            if (this.objeto.insetProdutoBD(produto, preço, quantidade, qtdmin, qtdmax)) {
                 JOptionPane.showMessageDialog(null, "Produto Cadastrado com Sucesso!");
 // limpa campos da interface
                 this.JTFproduto.setText("");
@@ -192,7 +192,7 @@ private Produto objetoproduto;
 
             }
 //Exibie no console o produto cadastrado
-            System.out.println(this.objetoproduto.getMinhaLista().toString());
+            System.out.println(this.objeto.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {

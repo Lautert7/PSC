@@ -1,27 +1,31 @@
-package model;
+package modelo;
 
-pubclic class Produto {
+public class Produto {
     private int idProduto;
     private String nome;
     private double preco;
     private String unidade;
     private int quantidadeEstoque;
-    private int quantidadeMinima;
-    private int quantidadeMaxima;
-    private String categoria;
+    private int quantidadeMin;
+    private int quantidadeMax;
+    private int categoriaId;
+    
+    public Produto (){
+    }
     
     public Produto(int idProduto, String nome, double preco, String unidade,
-                   int quantidadeEstoque, int quantidadeMinima, int quantidadeMaxima, String categoria) {
+                   int quantidadeEstoque, int quantidadeMin, int quantidadeMax, int categoriaId) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.preco = preco;
         this.unidade = unidade;
         this.quantidadeEstoque = quantidadeEstoque;
-        this.quantidadeMinima = quantidadeMinima;
-        this.quantidadeMaxima = quantidadeMaxima;
-        this.categoria = categoria;
+        this.quantidadeMin = quantidadeMin;
+        this.quantidadeMax = quantidadeMax;
+        this.categoriaId = categoriaId;
     }
-
+   
+    
     // Getters e Setters
     public int getIdProduto() {
         return idProduto;
@@ -63,27 +67,27 @@ pubclic class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public int getQuantidadeMinima() {
-        return quantidadeMinima;
+    public int getQuantidadeMin() {
+        return quantidadeMin;
     }
 
-    public void setQuantidadeMinima(int quantidadeMinima) {
-        this.quantidadeMinima = quantidadeMinima;
+    public void setQuantidadeMin(int quantidadeMin) {
+        this.quantidadeMin = quantidadeMin;
     }
 
-    public int getQuantidadeMaxima() {
-        return quantidadeMaxima;
+    public int getQuantidadeMax() {
+        return quantidadeMax;
     }
 
-    public void setQuantidadeMaxima(int quantidadeMaxima) {
-        this.quantidadeMaxima = quantidadeMaxima;
+    public void setQuantidadeMax(int quantidadeMax) {
+        this.quantidadeMax = quantidadeMax;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public int getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategoriaId(int categoriaId) {
+        this.categoriaId = categoriaId;
     }
 }

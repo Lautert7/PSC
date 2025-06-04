@@ -111,7 +111,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         System.exit(0);
@@ -132,7 +132,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemGerenciarEstoqueActionPerformed
 
     private void jMenuIteMovimentaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuIteMovimentaçãoActionPerformed
-         FrmMovimentação objeto = new FrmMovimentação();
+         FrmMovimentacao objeto = new FrmMovimentacao();
         objeto.setVisible(true);
     }//GEN-LAST:event_jMenuIteMovimentaçãoActionPerformed
 
