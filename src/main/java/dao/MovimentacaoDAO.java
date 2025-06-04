@@ -1,7 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException; 
@@ -24,7 +22,7 @@ public class MovimentacaoDAO {
         minhaLista.clear();  // Limpa a lista antes de preencher
 
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 ResultSet res = stmt.executeQuery("SELECT * FROM movimentacao");
                 
                 while (res.next()) {
@@ -58,7 +56,7 @@ public class MovimentacaoDAO {
     public int maiorID() {
         int maiorID = 0;
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM movimentacao");
                 if (res.next()) {
                     maiorID = res.getInt("id");
@@ -71,37 +69,6 @@ public class MovimentacaoDAO {
     }
 
     /**
-     * Retorna uma conexão com o banco de dados
-     * @return 
-     */
-    public Connection getConexao() {
-        Connection connection = null;
-        try {
-            String driver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driver);
-
-            String server = "localhost";
-            String database = "controle_estoque";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "root";
-
-            connection = DriverManager.getConnection(url, user, password);
-
-            if (connection != null) {
-                System.out.println("Status: Conectado!");
-            } else {
-                System.out.println("Status: NÃO CONECTADO!");
-            }
-            return connection;
-
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Erro de conexão: " + e.getMessage());
-            return null;
-        }
-    }
-
-    /**
      * Insere uma nova movimentacao no banco de dados
      * @param obj
      * @return 
@@ -109,7 +76,7 @@ public class MovimentacaoDAO {
     public boolean insertMovimentacaoBD(Movimentacao obj) {
         String sql = "INSERT INTO movimentacao (id, tipo, data_movimentacao, quantidade, produto_id) VALUES (?, ?, ?, ?, ?)";
         try {
-            try (PreparedStatement stmt = this.getConexao().prepareStatement(sql)) {
+            try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {
                 stmt.setInt(1, obj.getId());
                 stmt.setString(2, obj.getTipo());
                 stmt.setTimestamp(3, Timestamp.valueOf(obj.getDataMovimentacao()));
@@ -133,7 +100,7 @@ public class MovimentacaoDAO {
      */
     public boolean deleteMovimentacaoBD(int id) {
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 stmt.executeUpdate("DELETE FROM movimentacao WHERE id = " + id);
             }
             return true;
@@ -152,7 +119,7 @@ public class MovimentacaoDAO {
         String sql = "UPDATE movimentacao SET tipo = ?, data_movimentacao = ?, quantidade = ?, produto_id = ? WHERE id = ?";
 
         try {
-            try (PreparedStatement stmt = this.getConexao().prepareStatement(sql)) {
+            try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {
                 stmt.setString(1, obj.getTipo());
                 stmt.setTimestamp(2, Timestamp.valueOf(obj.getDataMovimentacao()));
                 stmt.setInt(3, obj.getQuantidade());
@@ -179,7 +146,7 @@ public class MovimentacaoDAO {
         obj.setId(id);
 
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 ResultSet res = stmt.executeQuery("SELECT * FROM movimentacao WHERE id = " + id);
                 
                 if (res.next()) {

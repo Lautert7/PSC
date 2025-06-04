@@ -1,7 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +18,7 @@ public class CategoriaDAO {
     public ArrayList<Categoria> getMinhaLista() {
         minhaLista.clear();
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 ResultSet res = stmt.executeQuery("SELECT * FROM categoria");
                 while (res.next()) {
                     int id = res.getInt("id");
@@ -45,7 +43,7 @@ public class CategoriaDAO {
     public int maiorID() {
         int maiorID = 0;
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 ResultSet res = stmt.executeQuery("SELECT MAX(id) as id FROM categoria");
                 res.next();
                 maiorID = res.getInt("id");
@@ -57,40 +55,6 @@ public class CategoriaDAO {
     }
 
     /**
-     * Estabelece a conexão com o banco de dados
-     * @return 
-     */
-    public Connection getConexao() {
-        Connection connection = null;
-        try {
-            String driver = "com.mysql.cj.jdbc.Driver";
-            Class.forName(driver);
-
-            String server = "localhost";
-            String database = "controle_estoque";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "root";
-
-            connection = DriverManager.getConnection(url, user, password);
-
-            if (connection != null) {
-                System.out.println("Status: Conectado!");
-            } else {
-                System.out.println("Status: NÃO CONECTADO!");
-            }
-
-            return connection;
-        } catch (ClassNotFoundException e) {
-            System.out.println("O driver não foi encontrado: " + e.getMessage());
-            return null;
-        } catch (SQLException e) {
-            System.out.println("Não foi possível conectar: " + e.getMessage());
-            return null;
-        }
-    }
-
-    /**
      * Insere uma nova Categoria no banco de dados
      * @param objeto
      * @return 
@@ -98,7 +62,7 @@ public class CategoriaDAO {
     public boolean insertCategoriaBD(Categoria objeto) {
         String sql = "INSERT INTO categoria(id, nome, tamanho, embalagem) VALUES (?, ?, ?, ?)";
         try {
-            try (PreparedStatement stmt = this.getConexao().prepareStatement(sql)) {
+            try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {
                 stmt.setInt(1, objeto.getIdCategoria());
                 stmt.setString(2, objeto.getNome());
                 stmt.setString(3, objeto.getTamanho());
@@ -121,7 +85,7 @@ public class CategoriaDAO {
      */
     public boolean deleteCategoriaBD(int id) {
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 stmt.executeUpdate("DELETE FROM categoria WHERE id = " + id);
             }
         } catch (SQLException erro) {
@@ -138,7 +102,7 @@ public class CategoriaDAO {
     public boolean updateCategoriaBD(Categoria objeto) {
         String sql = "UPDATE categoria SET nome = ?, tamanho = ?, embalagem = ? WHERE id = ?";
         try {
-            try (PreparedStatement stmt = this.getConexao().prepareStatement(sql)) {
+            try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {
                 stmt.setString(1, objeto.getNome());
                 stmt.setString(2, objeto.getTamanho());
                 stmt.setString(3, objeto.getEmbalagem());
@@ -163,7 +127,7 @@ public class CategoriaDAO {
         Categoria objeto = new Categoria();
         objeto.setIdCategoria(id);
         try {
-            try (Statement stmt = this.getConexao().createStatement()) {
+            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
                 ResultSet res = stmt.executeQuery("SELECT * FROM categoria WHERE id = " + id);
                 res.next();
                 
