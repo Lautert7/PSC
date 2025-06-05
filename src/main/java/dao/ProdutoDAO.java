@@ -27,14 +27,14 @@ public class ProdutoDAO {
                     
                     int id = res.getInt("id");
                     String nome = res.getString("nome");
-                    double precoUnitario = res.getDouble("preco_unitario");
+                    double preco = res.getDouble("preco");
                     String unidade = res.getString("unidade");
                     int quantidadeEstoque = res.getInt("quantidade_estoque");
                     int quantidadeMin = res.getInt("quantidade_min");
                     int quantidadeMax = res.getInt("quantidade_max");
                     int categoriaId = res.getInt("categoria_id");
                     
-                    Produto objetoproduto = new Produto(id, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId);
+                    Produto objetoproduto = new Produto(id, nome, preco, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId);
                     
                     minhaLista.add(objetoproduto);
                 }
@@ -118,7 +118,7 @@ public class ProdutoDAO {
      * @return 
      */
     public boolean updateProdutoBD(Produto objeto) {
-        String sql = "UPDATE produto SET nome = ?, preco_unitario = ?, unidade = ?, quantidade_estoque = ?, quantidade_min = ?, quantidade_max = ?, categoria_id = ? WHERE id = ?";
+        String sql = "UPDATE produto SET nome = ?, preco = ?, unidade = ?, quantidade_estoque = ?, quantidade_min = ?, quantidade_max = ?, categoria_id = ? WHERE id = ?";
 
         try {
             try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {

@@ -2,24 +2,45 @@
 package visao;
 
 import javax.swing.JOptionPane;
+import modelo.Categoria;
+import dao.CategoriaDAO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 
 public class FrmCategoria extends javax.swing.JFrame {
 
+private Categoria objetoCategoria;
 
     public FrmCategoria() {
         initComponents();
+        this.objetoCategoria = new Categoria();
+        this.carregaTabela();
     }
+public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableCategoria.getModel();
+        modelo.setNumRows(0);
 
+        ArrayList<Categoria> minhaLista = objetoCategoria.getMinhaLista();
+        for (Categoria a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getIdCategoria(),
+                a.getNome(),          
+                a.getTamanho(),
+                a.getEmbalagem(),
+            });
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCategoria = new javax.swing.JTable();
+        JTableCategoria = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         JTFid = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        JTFproduto = new javax.swing.JTextField();
+        JTFnome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         JTFembalagem = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -31,7 +52,7 @@ public class FrmCategoria extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Categoria");
 
-        jTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
+        JTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -42,11 +63,11 @@ public class FrmCategoria extends javax.swing.JFrame {
                 "ID", "Produto", "Embalagem", "Tamanho"
             }
         ));
-        jScrollPane1.setViewportView(jTableCategoria);
+        jScrollPane1.setViewportView(JTableCategoria);
 
         jLabel1.setText("ID:");
 
-        jLabel2.setText("Produto:");
+        jLabel2.setText("Nome do Produto:");
 
         jLabel3.setText("Embalagem(papelao, metal..):");
 
@@ -93,9 +114,9 @@ public class FrmCategoria extends javax.swing.JFrame {
                             .addGap(44, 44, 44)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(JTFproduto, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                                .addComponent(JTFid))
+                                .addComponent(JTFnome, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                .addComponent(JTFid)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,7 +152,7 @@ public class FrmCategoria extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JTFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTFnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JTFtamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -152,14 +173,14 @@ public class FrmCategoria extends javax.swing.JFrame {
          try {
 // recebendo e validando dados da interface gráfica.
             int id = 0;
-            String produto = "";
+            String nome = "";
             String embalagem = "";
             String tamanho = "";
             
-            if (this.JTFproduto.getText().length() < 2) {
-                throw new Mensagem("Produto deve conter ao menos 2 caracteres.");
+            if (this.JTFnome.getText().length() < 2) {
+                throw new Mensagem("O Nome do Produto deve conter ao menos 2 caracteres.");
             } else {
-                produto = this.JTFproduto.getText();
+                nome = this.JTFnome.getText();
             }
             if (this.JTFid.getText().length() <= 0) {
                 throw new Mensagem("O Id deve ser número e maior que zero.");
@@ -178,16 +199,16 @@ public class FrmCategoria extends javax.swing.JFrame {
             }
             
 // envia os dados para o Aluno processar
-            if (this.objeto.updateProdutoBD(id, produto, embalagem, tamanho)) {
+            if (this.objetoCategoria.updateCategoriaBD(id, nome, embalagem, tamanho)) {
 // limpa os campos
                 this.JTFid.setText("");
-                this.JTFproduto.setText("");
+                this.JTFnome.setText("");
                 this.JTFembalagem.setText("");
                 this.JTFtamanho.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Produto Alterado com Sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Categoria Alterada com Sucesso!");
             }
 //Exibe no console o aluno cadastrado
-            System.out.println(this.objeto.getMinhaLista().toString());
+            System.out.println(this.objetoCategoria.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
@@ -206,31 +227,31 @@ public class FrmCategoria extends javax.swing.JFrame {
         try {
 // validando dados da interface gráfica.
             int id = 0;
-            if (this.jTableCategoria.getSelectedRow() == -1) {
+            if (this.JTableCategoria.getSelectedRow() == -1) {
                 throw new Mensagem(
-                        "Primeiro Selecione um Produto para APAGAR");
+                        "Primeiro Selecione uma Categoria para APAGAR");
             } else {
-                id = Integer.parseInt(this.jTableCategoria.
-                        getValueAt(this.jTableCategoria.getSelectedRow(), 0).
+                id = Integer.parseInt(this.JTableCategoria.
+                        getValueAt(this.JTableCategoria.getSelectedRow(), 0).
                         toString());
             }
 // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
             int respostaUsuario = JOptionPane.
                     showConfirmDialog(null,
-                            "Tem certeza que deseja apagar este Produto ?");
+                            "Tem certeza que deseja apagar esssa Categoria?");
             if (respostaUsuario == 0) {// clicou em SIM
 // envia os dados para o Aluno processar
-                if (this.objetoproduto.deleteProdutoBD(id)) {
+                if (this.objetoCategoria.deleteCategoriaBD(id)) {
 // limpa os campos
                     this.JTFid.setText("");
-                    this.JTFproduto.setText("");
+                    this.JTFnome.setText("");
                     this.JTFembalagem.setText("");
                     this.JTFtamanho.setText("");
                     JOptionPane.showMessageDialog(rootPane, "Produto Apagado com Sucesso!");
                 }
             }
 // atualiza a tabela.
-            System.out.println(this.objetoproduto.getMinhaLista().toString());
+            System.out.println(this.objetoCategoria.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
@@ -255,13 +276,13 @@ public class FrmCategoria extends javax.swing.JFrame {
     private javax.swing.JButton JBCancelar;
     private javax.swing.JTextField JTFembalagem;
     private javax.swing.JTextField JTFid;
-    private javax.swing.JTextField JTFproduto;
+    private javax.swing.JTextField JTFnome;
     private javax.swing.JTextField JTFtamanho;
+    private javax.swing.JTable JTableCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCategoria;
     // End of variables declaration//GEN-END:variables
 }

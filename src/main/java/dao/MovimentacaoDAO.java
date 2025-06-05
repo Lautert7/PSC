@@ -33,7 +33,7 @@ public class MovimentacaoDAO {
                     int quantidade = res.getInt("quantidade");
                     int produtoId = res.getInt("produto_id");
                     
-                    Movimentacao obj = new Movimentacao(id, tipo, dataMovimentacao, quantidade, produtoId);
+                    Movimentacao obj= new Movimentacao(id, tipo, dataMovimentacao, quantidade, produtoId);
                     
                     minhaLista.add(obj);
                 }

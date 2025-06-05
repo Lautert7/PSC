@@ -22,12 +22,12 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
         ArrayList<Produto> minhaLista = objetoproduto.getMinhaLista();
         for (Produto a : minhaLista) {
             modelo.addRow(new Object[]{
-                a.getId(),
-                a.getProduto(),
-                a.getPreço(),
-                a.getEstoque(),
-                a.getQtdMin(),
-                a.getQtdMax()
+                a.getIdProduto(),
+                a.getNome(),
+                a.getPreco(),
+                a.getQuantidadeEstoque(),
+                a.getQuantidadeMin(),
+                a.getQuantidadeMax()
             });
         }
     }
@@ -49,7 +49,7 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
         JTFQuantidadeMax = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        JTFproduto = new javax.swing.JTextField();
+        JTFnome = new javax.swing.JTextField();
         JTFpreço = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -58,19 +58,21 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
         JBApagar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         JTFid = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        JTFunidade = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciamento de Estoque");
 
         JTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Produto", "Preço", "Quantidade", "Qtd Min.", "Qtd Max."
+                "ID", "Produto", "Preço", "Qtd Estoque", "Qtd Min.", "Qtd Max.", "Unidade"
             }
         ));
         JTableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -82,13 +84,13 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
 
         jLabel8.setText("Quantidade Máxima em Estoque:");
 
-        jLabel1.setText("Produto:");
+        jLabel1.setText("Nome do Produto:");
 
         jLabel2.setText("Preço:");
 
-        JTFproduto.addActionListener(new java.awt.event.ActionListener() {
+        JTFnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFprodutoActionPerformed(evt);
+                JTFnomeActionPerformed(evt);
             }
         });
 
@@ -132,6 +134,14 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Unidade:");
+
+        JTFunidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTFunidadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,21 +152,25 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JTFproduto)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTFpreço, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTFid))
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(JTFQuantidadeEstoque)
-                            .addComponent(JTFQuantidadeMin)
-                            .addComponent(JTFQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFunidade, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JTFnome)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JTFpreço, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JTFid)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(66, 66, 66)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(JTFQuantidadeEstoque)
+                                    .addComponent(JTFQuantidadeMin)
+                                    .addComponent(JTFQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
@@ -183,22 +197,26 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
                             .addComponent(JTFQuantidadeEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JTFid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
-                        .addComponent(jLabel7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel1))
                         .addGap(7, 7, 7)
-                        .addComponent(JTFQuantidadeMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JTFQuantidadeMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTFnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addGap(7, 7, 7)
                         .addComponent(JTFQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(5, 5, 5)
-                        .addComponent(JTFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addGap(2, 2, 2)
                         .addComponent(JTFpreço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addGap(2, 2, 2)
+                .addComponent(JTFunidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBAlterar)
@@ -209,9 +227,9 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JTFprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFprodutoActionPerformed
+    private void JTFnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFnomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTFprodutoActionPerformed
+    }//GEN-LAST:event_JTFnomeActionPerformed
 
     private void JTFpreçoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFpreçoActionPerformed
         // TODO add your handling code here:
@@ -223,13 +241,15 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
 
     private void JTableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableProdutosMouseClicked
         if (this.JTableProdutos.getSelectedRow() != -1) {
-            String produto = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 1).toString();
+            String nome = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 1).toString();
             String preço = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 2).toString();
-            String Quantidade = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 4).toString();
-            String QuantidadeMin = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 5).toString();
-            String QuantidadeMax = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 6).toString();
-            this.JTFproduto.setText(produto);
+             String unidade = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 3).toString();
+            String Quantidade = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 5).toString();
+            String QuantidadeMin = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 6).toString();
+            String QuantidadeMax = this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 7).toString();
+            this.JTFnome.setText(nome);
             this.JTFpreço.setText(preço);
+            this.JTFunidade.setText(unidade);
             this.JTFQuantidadeEstoque.setText(Quantidade);
             this.JTFQuantidadeMin.setText(QuantidadeMin);
             this.JTFQuantidadeMax.setText(QuantidadeMax);
@@ -240,35 +260,42 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
         try {
 // recebendo e validando dados da interface gráfica.
             int id = 0;
-            String produto = "";
-            int preço = 0;
-            int quantidade = 0;
-            int qtdmin = 0;
-            int qtdmax = 0;
-            if (this.JTFproduto.getText().length() < 2) {
+            String nome = "";
+            double preco = 0;
+            String unidade = "";
+            int quantidadeEstoque = 0;
+            int quantidadeMin = 0;
+            int quantidadeMax = 0;
+            int categoriaId = 0;
+            if (this.JTFnome.getText().length() < 2) {
                 throw new Mensagem("Produto deve conter ao menos 2 caracteres.");
             } else {
-                produto = this.JTFproduto.getText();
+                nome = this.JTFnome.getText();
             }
             if (this.JTFpreço.getText().length() <= 0) {
                 throw new Mensagem("O preço deve ser número e maior que zero.");
             } else {
-                preço = Integer.parseInt(this.JTFpreço.getText());
+                preco = Integer.parseInt(this.JTFpreço.getText());
+            }
+            if (this.JTFunidade.getText().length() < 2) {
+                throw new Mensagem("Produto deve conter ao menos 2 caracteres.");
+            } else {
+                unidade = this.JTFunidade.getText();
             }
             if (this.JTFQuantidadeEstoque.getText().length() < 0) {
                 throw new Mensagem("A quandidade em estoque deve ser um número.");
             } else {
-                quantidade = Integer.parseInt(this.JTFQuantidadeEstoque.getText());
+                quantidadeEstoque = Integer.parseInt(this.JTFQuantidadeEstoque.getText());
             }
             if (this.JTFQuantidadeMin.getText().length() <= 0) {
                 throw new Mensagem("Fase deve ser número e maior que zero.");
             } else {
-                qtdmin = Integer.parseInt(this.JTFQuantidadeMin.getText());
+                quantidadeMin = Integer.parseInt(this.JTFQuantidadeMin.getText());
             }
             if (this.JTFQuantidadeMax.getText().length() <= 0) {
                 throw new Mensagem("Fase deve ser número e maior que zero.");
             } else {
-                qtdmax = Integer.parseInt(this.JTFQuantidadeMax.getText());
+                quantidadeMax = Integer.parseInt(this.JTFQuantidadeMax.getText());
             }
             if (this.JTableProdutos.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um Produto para Alterar");
@@ -276,10 +303,11 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
                 id = Integer.parseInt(this.JTableProdutos.getValueAt(this.JTableProdutos.getSelectedRow(), 0).toString());
             }
 // envia os dados para o Aluno processar
-            if (this.objetoproduto.updateProdutoBD(id, produto, preço, quantidade, qtdmin, qtdmax)) {
+            if (this.objetoproduto.updateProdutoBD(id, nome, preco, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId)) {
 // limpa os campos
-                this.JTFproduto.setText("");
+                this.JTFnome.setText("");
                 this.JTFpreço.setText("");
+                this.JTFunidade.setText("");
                 this.JTFQuantidadeEstoque.setText("");
                 this.JTFQuantidadeMin.setText("");
                 this.JTFQuantidadeMax.setText("");
@@ -322,7 +350,7 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
 // envia os dados para o Aluno processar
                 if (this.objetoproduto.deleteProdutoBD(id)) {
 // limpa os campos
-                    this.JTFproduto.setText("");
+                    this.JTFnome.setText("");
                     this.JTFpreço.setText("");
                     this.JTFQuantidadeEstoque.setText("");
                     this.JTFQuantidadeMin.setText("");
@@ -341,6 +369,10 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_JBApagarActionPerformed
+
+    private void JTFunidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFunidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTFunidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,12 +417,14 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
     private javax.swing.JTextField JTFQuantidadeMax;
     private javax.swing.JTextField JTFQuantidadeMin;
     private javax.swing.JTextField JTFid;
+    private javax.swing.JTextField JTFnome;
     private javax.swing.JTextField JTFpreço;
-    private javax.swing.JTextField JTFproduto;
+    private javax.swing.JTextField JTFunidade;
     private javax.swing.JTable JTableProdutos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

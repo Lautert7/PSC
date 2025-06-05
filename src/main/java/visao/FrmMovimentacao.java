@@ -1,16 +1,37 @@
-
 package visao;
 
 import javax.swing.JOptionPane;
+import modelo.Movimentacao;
+import dao.MovimentacaoDAO;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class FrmMovimentacao extends javax.swing.JFrame {
 
+    private Movimentacao objetoMovimentacao;
 
-    /**
-     * Creates new form FrmMovimentação
-     */
     public FrmMovimentacao() {
         initComponents();
+        this.objetoMovimentacao = new Movimentacao();
+        this.carregaTabela();
+    }
+
+    public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) this.JTableMovimentação.getModel();
+        modelo.setNumRows(0);
+
+        ArrayList<Movimentacao> minhaLista = objetoMovimentacao.getMinhaLista();
+        for (Movimentacao a : minhaLista) {
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getId_produto(),          
+                a.getQuantidade(),
+                a.getDataMovimentacao(),
+                a.getTipo()
+            });
+        }
     }
 
     /**
@@ -24,19 +45,19 @@ public class FrmMovimentacao extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        JTFproduto = new javax.swing.JTextField();
         JTFdata = new javax.swing.JTextField();
         JTFQuantidade = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         JTFid = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableMovimentação = new javax.swing.JTable();
+        JTableMovimentação = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         JTFtipo = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
         JBAlterar = new javax.swing.JButton();
         JBApagar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        JTFidProduto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Movimentação");
@@ -44,12 +65,6 @@ public class FrmMovimentacao extends javax.swing.JFrame {
         jLabel2.setText("Data :");
 
         jLabel3.setText("Quantidade:");
-
-        JTFproduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFprodutoActionPerformed(evt);
-            }
-        });
 
         JTFdata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,9 +74,7 @@ public class FrmMovimentacao extends javax.swing.JFrame {
 
         jLabel6.setText("Id: ");
 
-        jLabel1.setText("Produto:");
-
-        jTableMovimentação.setModel(new javax.swing.table.DefaultTableModel(
+        JTableMovimentação.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -69,10 +82,10 @@ public class FrmMovimentacao extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Produto", "Unidades", "Data", "Tipo"
+                "ID", "ID Produto", "Quantidade", "Data", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(jTableMovimentação);
+        jScrollPane1.setViewportView(JTableMovimentação);
 
         jLabel4.setText("Tipo:");
 
@@ -97,6 +110,8 @@ public class FrmMovimentacao extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Id Produto: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,12 +133,12 @@ public class FrmMovimentacao extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(JTFQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTFproduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addComponent(JTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JTFid, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(JTFidProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,15 +166,15 @@ public class FrmMovimentacao extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JTFid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(JTFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(5, 5, 5)
-                        .addComponent(JTFQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTFidProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JTFQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBApagar)
@@ -170,10 +185,6 @@ public class FrmMovimentacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JTFprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFprodutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTFprodutoActionPerformed
-
     private void JTFdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFdataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTFdataActionPerformed
@@ -183,18 +194,14 @@ public class FrmMovimentacao extends javax.swing.JFrame {
     }//GEN-LAST:event_JBCancelarActionPerformed
 
     private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
-          try {
+        try {
 // recebendo e validando dados da interface gráfica.
             int id = 0;
-            String produto = "";
             int quantidade = 0;
-            int data = 0;
+            LocalDateTime dataMovimentacao = LocalDateTime.now();
             String tipo = "";
-            if (this.JTFproduto.getText().length() < 2) {
-                throw new Mensagem("Produto deve conter ao menos 2 caracteres.");
-            } else {
-                produto = this.JTFproduto.getText();
-            }
+            int id_produto = 0;
+
             if (this.JTFid.getText().length() <= 0) {
                 throw new Mensagem("O preço deve ser número e maior que zero.");
             } else {
@@ -206,32 +213,37 @@ public class FrmMovimentacao extends javax.swing.JFrame {
                 quantidade = Integer.parseInt(this.JTFQuantidade.getText());
             }
             if (this.JTFdata.getText().length() <= 0) {
-                throw new Mensagem("A data deve ser número e maior que zero.");
+                throw new Mensagem("A data deve ser dd/MM/yyyy HH:mm.");
             } else {
-                data = Integer.parseInt(this.JTFdata.getText());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                dataMovimentacao = LocalDateTime.parse(this.JTFdata.getText(), formatter);
             }
             if (this.JTFtipo.getText().length() <= 0) {
                 throw new Mensagem("Tipo deve conter apenas letras.");
             } else {
                 tipo = this.JTFtipo.getText();
             }
-            if (this.jTableMovimentação.getSelectedRow() == -1) {
+            if (this.JTFidProduto.getText().length() <= 0) {
+                throw new Mensagem("O Id do Produto deve ser número e maior que zero.");
+            } else {
+                id_produto = Integer.parseInt(this.JTFidProduto.getText());
+            }
+            if (this.JTableMovimentação.getSelectedRow() == -1) {
                 throw new Mensagem("Primeiro Selecione um Produto para Alterar");
             } else {
-                id = Integer.parseInt(this.jTableMovimentação.getValueAt(this.jTableMovimentação.getSelectedRow(), 0).toString());
+                id = Integer.parseInt(this.JTableMovimentação.getValueAt(this.JTableMovimentação.getSelectedRow(), 0).toString());
             }
 // envia os dados para o Aluno processar
-            if (this.objetoproduto.updateProdutoBD(id, produto, quantidade, data, tipo)) {
+            if (this.objetoMovimentacao.updateMovimentacaoBD(id, tipo, dataMovimentacao, quantidade, id_produto)) {
 // limpa os campos
                 this.JTFid.setText("");
-                this.JTFproduto.setText("");
                 this.JTFQuantidade.setText("");
                 this.JTFdata.setText("");
                 this.JTFtipo.setText("");
                 JOptionPane.showMessageDialog(rootPane, "Produto Alterado com Sucesso!");
             }
 //Exibe no console o aluno cadastrado
-            System.out.println(this.objetoproduto.getMinhaLista().toString());
+            System.out.println(this.objetoMovimentacao.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
@@ -247,12 +259,12 @@ public class FrmMovimentacao extends javax.swing.JFrame {
         try {
 // validando dados da interface gráfica.
             int id = 0;
-            if (this.jTableMovimentação.getSelectedRow() == -1) {
+            if (this.JTableMovimentação.getSelectedRow() == -1) {
                 throw new Mensagem(
                         "Primeiro Selecione um Produto para APAGAR");
             } else {
-                id = Integer.parseInt(this.jTableMovimentação.
-                        getValueAt(this.jTableMovimentação.getSelectedRow(), 0).
+                id = Integer.parseInt(this.JTableMovimentação.
+                        getValueAt(this.JTableMovimentação.getSelectedRow(), 0).
                         toString());
             }
 // retorna 0 -> primeiro botão | 1 -> segundo botão | 2 -> terceiro botão
@@ -261,10 +273,10 @@ public class FrmMovimentacao extends javax.swing.JFrame {
                             "Tem certeza que deseja apagar este Produto ?");
             if (respostaUsuario == 0) {// clicou em SIM
 // envia os dados para o Aluno processar
-                if (this.objetoproduto.deleteProdutoBD(id)) {
+                if (this.objetoMovimentacao.deleteMovimentacaoBD(id)) {
 // limpa os campos
                     this.JTFid.setText("");
-                    this.JTFproduto.setText("");
+                    this.JTFidProduto.setText("");
                     this.JTFQuantidade.setText("");
                     this.JTFdata.setText("");
                     this.JTFtipo.setText("");
@@ -272,7 +284,7 @@ public class FrmMovimentacao extends javax.swing.JFrame {
                 }
             }
 // atualiza a tabela.
-            System.out.println(this.objetoproduto.getMinhaLista().toString());
+            System.out.println(this.objetoMovimentacao.getMinhaLista().toString());
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
@@ -324,14 +336,14 @@ public class FrmMovimentacao extends javax.swing.JFrame {
     private javax.swing.JTextField JTFQuantidade;
     private javax.swing.JTextField JTFdata;
     private javax.swing.JTextField JTFid;
-    private javax.swing.JTextField JTFproduto;
+    private javax.swing.JTextField JTFidProduto;
     private javax.swing.JTextField JTFtipo;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTable JTableMovimentação;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableMovimentação;
     // End of variables declaration//GEN-END:variables
 }

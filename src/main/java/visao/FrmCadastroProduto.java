@@ -2,15 +2,16 @@ package visao;
 
 import modelo.Produto;
 import javax.swing.JOptionPane;
+import dao.ProdutoDAO;
 
 
 public class FrmCadastroProduto extends javax.swing.JFrame {
     
-private Produto objeto;
+private Produto objetoproduto;
 
     public FrmCadastroProduto() {
         initComponents();
-        this.objeto = new Produto();
+        this.objetoproduto = new Produto();
     }
 
     /**
@@ -25,7 +26,7 @@ private Produto objeto;
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        JTFproduto = new javax.swing.JTextField();
+        JTFnome = new javax.swing.JTextField();
         JTFpreço = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -35,19 +36,21 @@ private Produto objeto;
         JTFQuantidadeMax = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
         JBCadastrar = new javax.swing.JButton();
+        JTFunidade = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Produto");
 
-        jLabel1.setText("Produto:");
+        jLabel1.setText("Nome do Produto:");
 
         jLabel2.setText("Preço:");
 
-        JTFproduto.addActionListener(new java.awt.event.ActionListener() {
+        JTFnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTFprodutoActionPerformed(evt);
+                JTFnomeActionPerformed(evt);
             }
         });
 
@@ -78,29 +81,37 @@ private Produto objeto;
             }
         });
 
+        jLabel9.setText("Unidade:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JBCancelar)
                         .addGap(86, 86, 86)
                         .addComponent(JBCadastrar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(JTFproduto)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JTFnome)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JTFpreço, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9)
+                            .addComponent(JTFunidade, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel8)
                         .addComponent(jLabel7)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
-                        .addComponent(JTFpreço)
                         .addComponent(JTFQuantidadeEstoque)
                         .addComponent(JTFQuantidadeMin)
                         .addComponent(JTFQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(119, 119, 119))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,11 +119,15 @@ private Produto objeto;
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(JTFproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTFnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(2, 2, 2)
                 .addComponent(JTFpreço, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addGap(7, 7, 7)
+                .addComponent(JTFunidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,19 +140,19 @@ private Produto objeto;
                 .addComponent(jLabel8)
                 .addGap(7, 7, 7)
                 .addComponent(JTFQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBCadastrar))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JTFprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFprodutoActionPerformed
+    private void JTFnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFnomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTFprodutoActionPerformed
+    }//GEN-LAST:event_JTFnomeActionPerformed
 
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
@@ -149,50 +164,60 @@ private Produto objeto;
 
     private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
         try {
+            
 // recebendo e validando dados da interface gráfica.
-            String produto = "";
-            int preço = 0;
-            int quantidade = 0;
-            int qtdmin = 0;
-            int qtdmax = 0;
-            if (this.JTFproduto.getText().length() < 2) {
+            String nome= "";
+            double preco = 0;
+            String unidade = "";
+            int quantidadeEstoque = 0;
+            int quantidadeMin = 0;
+            int quantidadeMax = 0;
+            int categoriaId = 0;
+            if (this.JTFnome.getText().length() < 2) {
                 throw new Mensagem("Nome do produto deve conter ao menos 2 caracteres.");
             } else {
-                produto = this.JTFproduto.getText();
+                nome = this.JTFnome.getText();
             }
             if (this.JTFpreço.getText().length() <= 0) {
                 throw new Mensagem("Preço deve ser um valor maior que zero.");
             } else {
-                preço = Integer.parseInt(this.JTFpreço.getText());
+                preco = Integer.parseInt(this.JTFpreço.getText());
+            }
+            if (this.JTFunidade.getText().length() < 2) {
+                throw new Mensagem("A unidade deve conter ao menos 2 caracteres.");
+            } else {
+                unidade = this.JTFunidade.getText();
             }
             if (this.JTFQuantidadeEstoque.getText().length() <= 0) {
                 throw new Mensagem("Quantidade em Estoque deve ser número.");
             } else {
-                quantidade = Integer.parseInt(this.JTFQuantidadeEstoque.getText());
+                quantidadeEstoque = Integer.parseInt(this.JTFQuantidadeEstoque.getText());
             }
             if (this.JTFQuantidadeMin.getText().length() <= 0) {
                 throw new Mensagem("Quantidade Mínima em Estoque deve ser número.");
             } else {
-                qtdmin = Integer.parseInt(this.JTFQuantidadeMin.getText());
+                quantidadeMin = Integer.parseInt(this.JTFQuantidadeMin.getText());
             }
             if (this.JTFQuantidadeMax.getText().length() <= 0) {
                 throw new Mensagem("Quantidade Máxima em Estoque deve ser número.");
             } else {
-                qtdmax = Integer.parseInt(this.JTFQuantidadeMax.getText());
+                quantidadeMax = Integer.parseInt(this.JTFQuantidadeMax.getText());
             }
 // envia os dados para o Controlador cadastrar
-            if (this.objeto.insetProdutoBD(produto, preço, quantidade, qtdmin, qtdmax)) {
+            if (this.objetoproduto.insertProdutoBD(nome, preco, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId)) {
                 JOptionPane.showMessageDialog(null, "Produto Cadastrado com Sucesso!");
 // limpa campos da interface
-                this.JTFproduto.setText("");
+                this.JTFnome.setText("");
                 this.JTFpreço.setText("");
+                this.JTFunidade.setText("");
                 this.JTFQuantidadeEstoque.setText("");
                 this.JTFQuantidadeMin.setText("");
                 this.JTFQuantidadeMax.setText("");
 
             }
 //Exibie no console o produto cadastrado
-            System.out.println(this.objeto.getMinhaLista().toString());
+            System.out.println(this.objetoproduto.getMinhaLista().toString());
+            
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
@@ -242,13 +267,15 @@ private Produto objeto;
     private javax.swing.JTextField JTFQuantidadeEstoque;
     private javax.swing.JTextField JTFQuantidadeMax;
     private javax.swing.JTextField JTFQuantidadeMin;
+    private javax.swing.JTextField JTFnome;
     private javax.swing.JTextField JTFpreço;
-    private javax.swing.JTextField JTFproduto;
+    private javax.swing.JTextField JTFunidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
