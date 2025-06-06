@@ -60,11 +60,11 @@ Senha: `TrabalhoA3`
 
 ## 🎬 Usuários
 
-- Arthur Kroth Posselt - Arthur Kroth Posselt - akpos 10725115044 
-- Cesar Augusto dos Santos - c3sarrr 10725115592
-- Eduardo Severino de Jesus - edujesusss - Eduardo 1072514795
-- João Rodrigo Fortkamp Silva - joao-fortkamp06 - joaof 10725111602
-- Kayky de Souza Lautert - Lautert7 1072511581
+- Arthur Kroth Posselt - Arthur Kroth Posselt - akpos - RA 10725115044 
+- Cesar Augusto dos Santos - c3sarrr - RA 10725115592
+- Eduardo Severino de Jesus - edujesusss - Eduardo - RA 1072514795
+- João Rodrigo Fortkamp Silva - joao-fortkamp06 - joaof - RA 10725111602
+- Kayky de Souza Lautert - Lautert7 - RA 1072511581
   
 
 ---
