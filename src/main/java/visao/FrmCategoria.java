@@ -46,8 +46,8 @@ public void carregaTabela() {
         jLabel4 = new javax.swing.JLabel();
         JTFtamanho = new javax.swing.JTextField();
         JBCancelar = new javax.swing.JButton();
-        JBAlterar = new javax.swing.JButton();
         JBApagar = new javax.swing.JButton();
+        JBCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Categoria");
@@ -86,17 +86,17 @@ public void carregaTabela() {
             }
         });
 
-        JBAlterar.setText("Alterar");
-        JBAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBAlterarActionPerformed(evt);
-            }
-        });
-
         JBApagar.setText("Apagar");
         JBApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBApagarActionPerformed(evt);
+            }
+        });
+
+        JBCadastrar.setText("Cadastrar");
+        JBCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBCadastrarActionPerformed(evt);
             }
         });
 
@@ -125,11 +125,11 @@ public void carregaTabela() {
                                 .addComponent(JTFembalagem))
                             .addGap(45, 45, 45)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(118, 118, 118)
                         .addComponent(JBCancelar)
-                        .addGap(115, 115, 115)
-                        .addComponent(JBAlterar)
-                        .addGap(105, 105, 105)
+                        .addGap(67, 67, 67)
+                        .addComponent(JBCadastrar)
+                        .addGap(78, 78, 78)
                         .addComponent(JBApagar)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -154,12 +154,12 @@ public void carregaTabela() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JTFnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JTFtamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBApagar)
-                    .addComponent(JBAlterar))
-                .addGap(27, 27, 27))
+                    .addComponent(JBCadastrar))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -168,56 +168,6 @@ public void carregaTabela() {
     private void JBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_JBCancelarActionPerformed
-
-    private void JBAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBAlterarActionPerformed
-         try {
-// recebendo e validando dados da interface gráfica.
-            int id = 0;
-            String nome = "";
-            String embalagem = "";
-            String tamanho = "";
-            
-            if (this.JTFnome.getText().length() < 2) {
-                throw new Mensagem("O Nome do Produto deve conter ao menos 2 caracteres.");
-            } else {
-                nome = this.JTFnome.getText();
-            }
-            if (this.JTFid.getText().length() <= 0) {
-                throw new Mensagem("O Id deve ser número e maior que zero.");
-            } else {
-                id = Integer.parseInt(this.JTFid.getText());
-            }
-            if (this.JTFembalagem.getText().length() < 2) {
-                throw new Mensagem("Embalagem deve conter ao menos 2 caracteres.");
-            } else {
-                embalagem = this.JTFembalagem.getText();
-            }
-            if (this.JTFtamanho.getText().length() < 2) {
-                throw new Mensagem("Tamanho deve conter ao menos 2 caracteres.");
-            } else {
-                tamanho = this.JTFtamanho.getText();
-            }
-            
-// envia os dados para o Aluno processar
-            if (this.objetoCategoria.updateCategoriaBD(id, nome, embalagem, tamanho)) {
-// limpa os campos
-                this.JTFid.setText("");
-                this.JTFnome.setText("");
-                this.JTFembalagem.setText("");
-                this.JTFtamanho.setText("");
-                JOptionPane.showMessageDialog(rootPane, "Categoria Alterada com Sucesso!");
-            }
-//Exibe no console o aluno cadastrado
-            System.out.println(this.objetoCategoria.getMinhaLista().toString());
-        } catch (Mensagem erro) {
-            JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número válido.");
-        } finally {
-// atualiza a tabela.
-            carregaTabela();
-        }
-    }//GEN-LAST:event_JBAlterarActionPerformed
 
     private void JTFembalagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTFembalagemActionPerformed
         // TODO add your handling code here:
@@ -260,6 +210,50 @@ public void carregaTabela() {
         }
     }//GEN-LAST:event_JBApagarActionPerformed
 
+    private void JBCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBCadastrarActionPerformed
+        try {
+
+            // recebendo e validando dados da interface gráfica.
+            String nome= "";
+            String embalagem = "";
+            String tamanho = "";
+            
+            
+            if (this.JTFnome.getText().length() < 2) {
+                throw new Mensagem("Nome do produto deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.JTFnome.getText();
+            }
+            if (this.JTFembalagem.getText().length() < 2) {
+                throw new Mensagem("Nome do produto deve conter ao menos 2 caracteres.");
+            } else {
+                embalagem = this.JTFembalagem.getText();
+            }
+            if (this.JTFtamanho.getText().length() < 2) {
+                throw new Mensagem("Nome do produto deve conter ao menos 2 caracteres.");
+            } else {
+                tamanho = this.JTFtamanho.getText();
+            }
+            // envia os dados para o Controlador cadastrar
+            if (this.objetoCategoria.insertCategoriaBD(nome, tamanho, embalagem)) {
+                JOptionPane.showMessageDialog(null, "Produto Cadastrado com Sucesso!");
+                // limpa campos da interface
+                this.JTFnome.setText("");
+                this.JTFid.setText("");
+                this.JTFembalagem.setText("");
+                this.JTFtamanho.setText("");
+
+            }
+            //Exibie no console o produto cadastrado
+            System.out.println(this.objetoCategoria.getMinhaLista().toString());
+
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número válido.");
+        }
+    }//GEN-LAST:event_JBCadastrarActionPerformed
+
 
     public static void main(String args[]) {
 
@@ -271,8 +265,8 @@ public void carregaTabela() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JBAlterar;
     private javax.swing.JButton JBApagar;
+    private javax.swing.JButton JBCadastrar;
     private javax.swing.JButton JBCancelar;
     private javax.swing.JTextField JTFembalagem;
     private javax.swing.JTextField JTFid;

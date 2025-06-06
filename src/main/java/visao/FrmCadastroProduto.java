@@ -54,7 +54,6 @@ private Produto objetoproduto;
             }
         });
 
-        JTFpreço.setText("R$");
         JTFpreço.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFpreçoActionPerformed(evt);
@@ -116,7 +115,7 @@ private Produto objetoproduto;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
                 .addComponent(JTFnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,7 +139,7 @@ private Produto objetoproduto;
                 .addComponent(jLabel8)
                 .addGap(7, 7, 7)
                 .addComponent(JTFQuantidadeMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBCancelar)
                     .addComponent(JBCadastrar))

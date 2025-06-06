@@ -94,7 +94,6 @@ public class FrmGerenciarEstoque extends javax.swing.JFrame {
             }
         });
 
-        JTFpreço.setText("R$");
         JTFpreço.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JTFpreçoActionPerformed(evt);
