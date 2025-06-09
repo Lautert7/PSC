@@ -104,6 +104,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Produtos Abaixo da Qnt. Min."/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBprodutosAbaixoQntMinActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBrelacaoCategoriaProduto">
       <Properties>
