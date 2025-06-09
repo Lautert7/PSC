@@ -46,6 +46,11 @@ public class FrmRelatoriosGerenciais extends javax.swing.JFrame {
 
         JBprodutosAcimaQntMax.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JBprodutosAcimaQntMax.setText("Produtos Acima da Qnt. Max.");
+        JBprodutosAcimaQntMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBprodutosAcimaQntMaxActionPerformed(evt);
+            }
+        });
 
         JBlistaPrecos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JBlistaPrecos.setText("Lista de Preços");
@@ -122,6 +127,11 @@ public class FrmRelatoriosGerenciais extends javax.swing.JFrame {
         FrmProdutosAbaixoQtdMin relatorioMinimo = new FrmProdutosAbaixoQtdMin();
         relatorioMinimo.setVisible(true);
     }//GEN-LAST:event_JBprodutosAbaixoQntMinActionPerformed
+
+    private void JBprodutosAcimaQntMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBprodutosAcimaQntMaxActionPerformed
+        FrmProdutosAcimaQtdMax relatoriomaximo = new FrmProdutosAcimaQtdMax();
+        relatoriomaximo.setVisible(true);
+    }//GEN-LAST:event_JBprodutosAcimaQntMaxActionPerformed
 
     /**
      * @param args the command line arguments
