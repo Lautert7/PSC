@@ -91,7 +91,7 @@ public class Categoria {
      * @param embalagem Embalagem da categoria.
      * @return Verdadeiro ou falso se conseguiu fazer a inclusão.
      */
-    public boolean insertCategoriaBD( String nome, String tamanho, String embalagem) {
+    public boolean insertCategoriaBD(String nome, String tamanho, String embalagem) {
         int idCategoria = this.maiorID() + 1;
         Categoria objeto = new Categoria(idCategoria, nome, tamanho, embalagem);
         dao.insertCategoriaBD(objeto);

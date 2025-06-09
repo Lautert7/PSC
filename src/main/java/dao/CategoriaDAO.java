@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -139,5 +140,77 @@ public class CategoriaDAO {
             System.out.println("Erro: " + erro);
         }
         return objeto;
+    }
+    
+    public int getOuCriaCategoriaPadrao() throws SQLException {
+    String nome = "Sem Categoria";
+    String tamanho = "Pequeno";
+    String embalagem = "Lata";
+
+    String sqlBusca = "SELECT id FROM categoria WHERE nome = ? LIMIT 1";
+
+    try (Connection conn = ConexaoDB.getConexao();
+         PreparedStatement stmt = conn.prepareStatement(sqlBusca)) {
+
+        stmt.setString(1, nome);
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("id");
+        }
+    }
+
+    // Se não existir, cria
+    String sqlInsere = "INSERT INTO categoria (nome, tamanho, embalagem) VALUES (?, ?, ?)";
+
+    try (Connection conn = ConexaoDB.getConexao();
+         PreparedStatement stmt = conn.prepareStatement(sqlInsere, Statement.RETURN_GENERATED_KEYS)) {
+
+        stmt.setString(1, nome);
+        stmt.setString(2, tamanho);
+        stmt.setString(3, embalagem);
+        stmt.executeUpdate();
+
+        ResultSet rs = stmt.getGeneratedKeys();
+        if (rs.next()) {
+            return rs.getInt(1); // retorna o novo id
+        } else {
+            throw new SQLException("Erro ao criar categoria padrão.");
+        }
+    }
+}
+
+
+    public void atualizarProdutosParaNovaCategoria(int categoriaAntigaId, int novaCategoriaId) throws SQLException {
+        String sql = "UPDATE produto SET categoria_id = ? WHERE categoria_id = ?";
+
+        try (Connection conn = ConexaoDB.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, novaCategoriaId);
+            stmt.setInt(2, categoriaAntigaId);
+            stmt.executeUpdate();
+        }
+    }
+    
+    public int getIdPorNome(String nomeCategoria) {
+        int id = -1;
+        try {
+            Connection conn = ConexaoDB.getConexao();
+            String sql = "SELECT id FROM categoria WHERE nome = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nomeCategoria);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getInt("id");
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar ID da categoria: " + e.getMessage());
+        }
+        return id;
     }
 }

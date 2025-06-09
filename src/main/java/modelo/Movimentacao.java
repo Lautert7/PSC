@@ -13,7 +13,7 @@ public class Movimentacao {
     private String tipo;
     private LocalDateTime dataMovimentacao;
     private int quantidade;
-    private int id_produto;
+    private int produtoId;
 
     private MovimentacaoDAO dao;
 
@@ -24,12 +24,12 @@ public class Movimentacao {
         this(0, "", LocalDateTime.now(), 0, 0);
     }
 
-    public Movimentacao(int id, String tipo, LocalDateTime dataMovimentacao, int quantidade, int id_produto) {
+    public Movimentacao(int id, String tipo, LocalDateTime dataMovimentacao, int quantidade, int produtoId) {
         this.id = id;
         this.tipo = tipo;
         this.dataMovimentacao = dataMovimentacao;
         this.quantidade = quantidade;
-        this.id_produto = id_produto;
+        this.produtoId = produtoId;
         this.dao = new MovimentacaoDAO();
     }
 
@@ -67,12 +67,12 @@ public class Movimentacao {
         this.quantidade = quantidade;
     }
 
-    public int getId_produto() {
-        return id_produto;
+    public int getProdutoId() {
+        return produtoId;
     }
 
-    public void setId_produto(int id_produto) {
-        this.id_produto = id_produto;
+    public void setProdutoId(int produtoId) {
+        this.produtoId = produtoId;
     }
 
     /**
@@ -87,7 +87,7 @@ public class Movimentacao {
                 ", tipo='" + tipo + '\'' +
                 ", dataMovimentacao=" + dataMovimentacao +
                 ", quantidade=" + quantidade +
-                ", id_produto=" + id_produto +
+                ", produtoId=" + produtoId +
                 '}';
     }
 
@@ -108,12 +108,12 @@ public class Movimentacao {
      * @param tipo Tipo da movimentação.
      * @param dataMovimentacao Data e hora da movimentação.
      * @param quantidade Quantidade movimentada.
-     * @param id_produto ID do produto.
+     * @param produtoId ID do produto.
      * @return Verdadeiro se inseriu com sucesso.
      */
-    public boolean insertMovimentacaoBD(String tipo, LocalDateTime dataMovimentacao, int quantidade, int id_produto) {
+    public boolean insertMovimentacaoBD(String tipo, LocalDateTime dataMovimentacao, int quantidade, int produtoId) {
         int id = this.maiorID() + 1;
-        Movimentacao obj = new Movimentacao(id, tipo, dataMovimentacao, quantidade, id_produto);
+        Movimentacao obj = new Movimentacao(id, tipo, dataMovimentacao, quantidade, produtoId);
         dao.insertMovimentacaoBD(obj);
         return true;
     }
@@ -135,11 +135,11 @@ public class Movimentacao {
      * @param tipo Tipo da movimentação.
      * @param dataMovimentacao Data e hora.
      * @param quantidade Quantidade.
-     * @param id_produto ID do produto.
+     * @param produtoId ID do produto.
      * @return Verdadeiro se atualizou com sucesso.
      */
-    public boolean updateMovimentacaoBD(int id, String tipo, LocalDateTime dataMovimentacao, int quantidade, int id_produto) {
-        Movimentacao obj = new Movimentacao(id, tipo, dataMovimentacao, quantidade, id_produto);
+    public boolean updateMovimentacaoBD(int id, String tipo, LocalDateTime dataMovimentacao, int quantidade, int produtoId) {
+        Movimentacao obj = new Movimentacao(id, tipo, dataMovimentacao, quantidade, produtoId);
         dao.updateMovimentacaoBD(obj);
         return true;
     }

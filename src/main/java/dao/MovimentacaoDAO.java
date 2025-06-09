@@ -22,22 +22,22 @@ public class MovimentacaoDAO {
         minhaLista.clear();  // Limpa a lista antes de preencher
 
         try {
-            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
-                ResultSet res = stmt.executeQuery("SELECT * FROM movimentacao");
-                
-                while (res.next()) {
-                    int id = res.getInt("id");
-                    String tipo = res.getString("tipo");
-                    Timestamp timestamp = res.getTimestamp("data_movimentacao");
-                    LocalDateTime dataMovimentacao = timestamp.toLocalDateTime();
-                    int quantidade = res.getInt("quantidade");
-                    int produtoId = res.getInt("produto_id");
-                    
-                    Movimentacao obj= new Movimentacao(id, tipo, dataMovimentacao, quantidade, produtoId);
-                    
-                    minhaLista.add(obj);
-                }
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM movimentacao");
+            
+            while (res.next()) {
+                int id = res.getInt("id");
+                String tipo = res.getString("tipo");
+                Timestamp timestamp = res.getTimestamp("data_movimentacao");
+                LocalDateTime dataMovimentacao = timestamp.toLocalDateTime();
+                int quantidade = res.getInt("quantidade");
+                int produtoId = res.getInt("produto_id");
+
+                Movimentacao obj = new Movimentacao(id, tipo, dataMovimentacao, quantidade, produtoId);
+
+                minhaLista.add(obj);
             }
+            stmt.close();
 
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
@@ -56,12 +56,12 @@ public class MovimentacaoDAO {
     public int maiorID() {
         int maiorID = 0;
         try {
-            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
-                ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM movimentacao");
-                if (res.next()) {
-                    maiorID = res.getInt("id");
-                }
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT MAX(id) AS id FROM movimentacao");
+            if (res.next()) {
+                maiorID = res.getInt("id");
             }
+            stmt.close();
         } catch (SQLException ex) {
             System.out.println("Erro: " + ex);
         }
@@ -76,15 +76,16 @@ public class MovimentacaoDAO {
     public boolean insertMovimentacaoBD(Movimentacao obj) {
         String sql = "INSERT INTO movimentacao (id, tipo, data_movimentacao, quantidade, produto_id) VALUES (?, ?, ?, ?, ?)";
         try {
-            try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {
-                stmt.setInt(1, obj.getId());
-                stmt.setString(2, obj.getTipo());
-                stmt.setTimestamp(3, Timestamp.valueOf(obj.getDataMovimentacao()));
-                stmt.setInt(4, obj.getQuantidade());
-                stmt.setInt(5, obj.getId_produto());
-                
-                stmt.execute();
-            }
+            PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql);
+
+            stmt.setInt(1, obj.getId());
+            stmt.setString(2, obj.getTipo());
+            stmt.setTimestamp(3, Timestamp.valueOf(obj.getDataMovimentacao()));
+            stmt.setInt(4, obj.getQuantidade());
+            stmt.setInt(5, obj.getProdutoId());
+
+            stmt.execute();
+            stmt.close();
 
             return true;
         } catch (SQLException erro) {
@@ -100,9 +101,21 @@ public class MovimentacaoDAO {
      */
     public boolean deleteMovimentacaoBD(int id) {
         try {
-            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
-                stmt.executeUpdate("DELETE FROM movimentacao WHERE id = " + id);
-            }
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM movimentacao WHERE id = " + id);
+            stmt.close();
+            return true;
+        } catch (SQLException erro) {
+            System.out.println("Erro: " + erro);
+            return false;
+        }
+    }
+    
+    public boolean deleteMovimentacoesProdutoBD(int idProduto) {
+        try (PreparedStatement stmt = ConexaoDB.getConexao()
+                .prepareStatement("DELETE FROM movimentacao WHERE produto_id = ?")) {
+            stmt.setInt(1, idProduto);
+            stmt.executeUpdate();
             return true;
         } catch (SQLException erro) {
             System.out.println("Erro: " + erro);
@@ -119,15 +132,16 @@ public class MovimentacaoDAO {
         String sql = "UPDATE movimentacao SET tipo = ?, data_movimentacao = ?, quantidade = ?, produto_id = ? WHERE id = ?";
 
         try {
-            try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {
-                stmt.setString(1, obj.getTipo());
-                stmt.setTimestamp(2, Timestamp.valueOf(obj.getDataMovimentacao()));
-                stmt.setInt(3, obj.getQuantidade());
-                stmt.setInt(4, obj.getId_produto());
-                stmt.setInt(5, obj.getId());
-                
-                stmt.execute();
-            }
+            PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql);
+
+            stmt.setString(1, obj.getTipo());
+            stmt.setTimestamp(2, Timestamp.valueOf(obj.getDataMovimentacao()));
+            stmt.setInt(3, obj.getQuantidade());
+            stmt.setInt(4, obj.getProdutoId());
+            stmt.setInt(5, obj.getId());
+
+            stmt.execute();
+            stmt.close();
             return true;
 
         } catch (SQLException erro) {
@@ -146,20 +160,34 @@ public class MovimentacaoDAO {
         obj.setId(id);
 
         try {
-            try (Statement stmt = ConexaoDB.getConexao().createStatement()) {
-                ResultSet res = stmt.executeQuery("SELECT * FROM movimentacao WHERE id = " + id);
-                
-                if (res.next()) {
-                    obj.setTipo(res.getString("tipo"));
-                    obj.setDataMovimentacao(res.getTimestamp("data_movimentacao").toLocalDateTime());
-                    obj.setQuantidade(res.getInt("quantidade"));
-                    obj.setId_produto(res.getInt("produto_id"));
-                }
+            Statement stmt = ConexaoDB.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM movimentacao WHERE id = " + id);
+
+            if (res.next()) {
+                obj.setTipo(res.getString("tipo"));
+                obj.setDataMovimentacao(res.getTimestamp("data_movimentacao").toLocalDateTime());
+                obj.setQuantidade(res.getInt("quantidade"));
+                obj.setProdutoId(res.getInt("produto_id"));
             }
+            stmt.close();
 
         } catch (SQLException erro) {
             System.out.println("Erro: " + erro);
         }
         return obj;
+    }
+    
+    public boolean possuiMovimentacoes(int idProduto) {
+        String sql = "SELECT COUNT(*) FROM movimentacao WHERE produto_id = ?";
+        try (PreparedStatement stmt = ConexaoDB.getConexao().prepareStatement(sql)) {
+            stmt.setInt(1, idProduto);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException erro) {
+            System.out.println("Erro ao verificar movimentações: " + erro);
+        }
+        return false;
     }
 }

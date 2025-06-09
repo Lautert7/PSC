@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 public class Produto {
 
-    private int idProduto;
+    private int id;
     private String nome;
-    private double preco;
+    private double precoUnitario;
     private String unidade;
     private int quantidadeEstoque;
     private int quantidadeMin;
@@ -26,11 +26,11 @@ public class Produto {
         this(0, "", 0.0, "", 0, 0, 0, 0);
     }
 
-    public Produto(int idProduto, String nome, double preco, String unidade,
+    public Produto(int id, String nome, double precoUnitario, String unidade,
                    int quantidadeEstoque, int quantidadeMin, int quantidadeMax, int categoriaId) {
-        this.idProduto = idProduto;
+        this.id = id;
         this.nome = nome;
-        this.preco = preco;
+        this.precoUnitario = precoUnitario;
         this.unidade = unidade;
         this.quantidadeEstoque = quantidadeEstoque;
         this.quantidadeMin = quantidadeMin;
@@ -41,12 +41,12 @@ public class Produto {
 
     // Métodos GET e SET
 
-    public int getIdProduto() {
-        return idProduto;
+    public int getId() {
+        return id;
     }
 
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getNome() {
@@ -57,12 +57,12 @@ public class Produto {
         this.nome = nome;
     }
     
-    public double getPreco() {
-        return preco;
+    public double getPrecoUnitario() {
+        return precoUnitario;
     }
 
-    public void setPreco(double preco) {
-        this.preco = preco;
+    public void setPrecoUnitario(double precoUnitario) {
+        this.precoUnitario = precoUnitario;
     }
     
     public String getUnidade() {
@@ -113,9 +113,9 @@ public class Produto {
     @Override
     public String toString() {
         return "Produto{" + 
-                "idProduto=" + idProduto + 
+                "id=" + id + 
                 ", nome='" + nome + '\'' +
-                ", preco=" + preco + 
+                ", precoUnitario=" + precoUnitario + 
                 ", unidade='" + unidade + '\'' +
                 ", quantidadeEstoque=" + quantidadeEstoque + 
                 ", quantidadeMin=" + quantidadeMin + 
@@ -139,7 +139,7 @@ public class Produto {
      * Insere um novo produto no banco de dados.
      *
      * @param nome Nome do produto.
-     * @param preco Preço unitário.
+     * @param precoUnitario Preço unitário.
      * @param unidade Unidade de medida.
      * @param quantidadeEstoque Quantidade atual.
      * @param quantidadeMin Quantidade mínima.
@@ -147,10 +147,10 @@ public class Produto {
      * @param categoriaId ID da categoria.
      * @return Verdadeiro se inseriu com sucesso.
      */
-    public boolean insertProdutoBD(String nome, double preco, String unidade,
+    public boolean insertProdutoBD(String nome, double precoUnitario, String unidade,
                                    int quantidadeEstoque, int quantidadeMin, int quantidadeMax, int categoriaId) {
-        int idProduto = this.maiorID() + 1;
-        Produto objeto = new Produto(idProduto, nome, preco, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId);
+        int id = this.maiorID() + 1;
+        Produto objeto = new Produto(id, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId);
         dao.insertProdutoBD(objeto);
         return true;
     }
@@ -158,20 +158,20 @@ public class Produto {
     /**
      * Deleta um produto pelo ID.
      *
-     * @param idProduto ID do produto a ser deletado.
+     * @param id ID do produto a ser deletado.
      * @return Verdadeiro se deletou com sucesso.
      */
-    public boolean deleteProdutoBD(int idProduto) {
-        dao.deleteProdutoBD(idProduto);
+    public boolean deleteProdutoBD(int id) {
+        dao.deleteProdutoBD(id);
         return true;
     }
 
     /**
      * Atualiza os dados de um produto.
      *
-     * @param idProduto ID do produto.
+     * @param id ID do produto.
      * @param nome Nome do produto.
-     * @param preco Preço unitário.
+     * @param precoUnitario Preço unitário.
      * @param unidade Unidade.
      * @param quantidadeEstoque Estoque atual.
      * @param quantidadeMin Estoque mínimo.
@@ -179,9 +179,9 @@ public class Produto {
      * @param categoriaId Categoria relacionada.
      * @return Verdadeiro se atualizou com sucesso.
      */
-    public boolean updateProdutoBD(int idProduto, String nome, double preco, String unidade,
+    public boolean updateProdutoBD(int id, String nome, double precoUnitario, String unidade,
                                    int quantidadeEstoque, int quantidadeMin, int quantidadeMax, int categoriaId) {
-        Produto objeto = new Produto(idProduto, nome, preco, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId);
+        Produto objeto = new Produto(id, nome, precoUnitario, unidade, quantidadeEstoque, quantidadeMin, quantidadeMax, categoriaId);
         dao.updateProdutoBD(objeto);
         return true;
     }
@@ -189,11 +189,11 @@ public class Produto {
     /**
      * Carrega os dados de um produto específico.
      *
-     * @param idProduto ID do produto.
+     * @param id ID do produto.
      * @return Um objeto Produto preenchido.
      */
-    public Produto carregaProduto(int idProduto) {
-        return dao.carregaProduto(idProduto);
+    public Produto carregaProduto(int id) {
+        return dao.carregaProduto(id);
     }
 
     /**
