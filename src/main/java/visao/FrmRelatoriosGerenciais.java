@@ -54,6 +54,11 @@ public class FrmRelatoriosGerenciais extends javax.swing.JFrame {
 
         JBlistaPrecos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JBlistaPrecos.setText("Lista de Preços");
+        JBlistaPrecos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBlistaPrecosActionPerformed(evt);
+            }
+        });
 
         JBprodutosAbaixoQntMin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JBprodutosAbaixoQntMin.setText("Produtos Abaixo da Qnt. Min.");
@@ -65,6 +70,11 @@ public class FrmRelatoriosGerenciais extends javax.swing.JFrame {
 
         JBrelacaoCategoriaProduto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JBrelacaoCategoriaProduto.setText("Relação Categoria/Produto");
+        JBrelacaoCategoriaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBrelacaoCategoriaProdutoActionPerformed(evt);
+            }
+        });
 
         JBvoltar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JBvoltar.setText("Voltar");
@@ -132,6 +142,16 @@ public class FrmRelatoriosGerenciais extends javax.swing.JFrame {
         FrmProdutosAcimaQtdMax relatoriomaximo = new FrmProdutosAcimaQtdMax();
         relatoriomaximo.setVisible(true);
     }//GEN-LAST:event_JBprodutosAcimaQntMaxActionPerformed
+    
+    
+    private void JBrelacaoCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBrelacaoCategoriaProdutoActionPerformed
+         FrmRelacaoCategoriaProduto relatorio = new FrmRelacaoCategoriaProduto();
+    relatorio.setVisible(true);
+    }//GEN-LAST:event_JBrelacaoCategoriaProdutoActionPerformed
+
+    private void JBlistaPrecosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlistaPrecosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBlistaPrecosActionPerformed
 
     /**
      * @param args the command line arguments

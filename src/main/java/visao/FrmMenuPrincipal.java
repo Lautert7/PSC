@@ -74,7 +74,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuGerenciar.add(jMenuItemCadastrarProduto);
 
-        jMenuItemEditarProduto.setText("Genreciar Produto");
+        jMenuItemEditarProduto.setText("Gerenciar Produto");
         jMenuItemEditarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemEditarProdutoActionPerformed(evt);

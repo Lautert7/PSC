@@ -76,7 +76,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemEditarProduto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Genreciar Produto"/>
+                <Property name="text" type="java.lang.String" value="Gerenciar Produto"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemEditarProdutoActionPerformed"/>

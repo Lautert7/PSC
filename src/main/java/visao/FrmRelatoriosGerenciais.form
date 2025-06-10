@@ -99,6 +99,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Lista de Pre&#xe7;os"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBlistaPrecosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBprodutosAbaixoQntMin">
       <Properties>
@@ -118,6 +121,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Rela&#xe7;&#xe3;o Categoria/Produto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBrelacaoCategoriaProdutoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBvoltar">
       <Properties>
