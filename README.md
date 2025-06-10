@@ -4,8 +4,9 @@
 ## ✅ Requisitos do Sistema
 
 - Java 11 ou superior  
-- MySQL  
-- IDE Java (preferencialmente Apache NetBeans)
+- MySQL 8.4.4
+- IDE Java (preferencialmente Apache NetBeans 26)
+- maven 3.9.6
 
 ⚠️ **Banco de Dados:**  
 Usuário: `root`  
