@@ -28,7 +28,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="JBvoltar" max="32767" attributes="0"/>
-                  <Component id="JBblancoFisicoFinanceiro" pref="287" max="32767" attributes="0"/>
+                  <Component id="JBbalancoFisicoFinanceiro" pref="287" max="32767" attributes="0"/>
                   <Component id="JBlistaPrecos" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -51,7 +51,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JBblancoFisicoFinanceiro" alignment="3" min="-2" pref="155" max="-2" attributes="0"/>
+                  <Component id="JBbalancoFisicoFinanceiro" alignment="3" min="-2" pref="155" max="-2" attributes="0"/>
                   <Component id="JBprodutosAcimaQntMax" alignment="3" min="-2" pref="155" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -70,7 +70,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="JBblancoFisicoFinanceiro">
+    <Component class="javax.swing.JButton" name="JBbalancoFisicoFinanceiro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -78,7 +78,7 @@
         <Property name="text" type="java.lang.String" value="Balan&#xe7;o F&#xed;sico/Financeiro"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBblancoFisicoFinanceiroActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBbalancoFisicoFinanceiroActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="JBprodutosAcimaQntMax">

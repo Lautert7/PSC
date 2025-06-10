@@ -47,6 +47,7 @@ public class FrmListaDePreços extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lista de Preços");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -56,7 +57,7 @@ public class FrmListaDePreços extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nome", "Preço", "Und. Med.", "Categoria"
+                "Nome", "Preço", "Unidade de Medida", "Categoria"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

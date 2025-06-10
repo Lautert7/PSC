@@ -90,7 +90,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         });
         jMenuGerenciar.add(jMenuItemMovimentacoes);
 
-        jMenuItemEditarMovimentacoes.setText("Genreciar Movimentação");
+        jMenuItemEditarMovimentacoes.setText("Gerenciar Movimentação");
         jMenuItemEditarMovimentacoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemEditarMovimentacoesActionPerformed(evt);

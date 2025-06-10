@@ -92,7 +92,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemEditarMovimentacoes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Genreciar Movimenta&#xe7;&#xe3;o"/>
+                <Property name="text" type="java.lang.String" value="Gerenciar Movimenta&#xe7;&#xe3;o"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemEditarMovimentacoesActionPerformed"/>
