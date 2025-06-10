@@ -150,7 +150,8 @@ public class FrmRelatoriosGerenciais extends javax.swing.JFrame {
     }//GEN-LAST:event_JBrelacaoCategoriaProdutoActionPerformed
 
     private void JBlistaPrecosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlistaPrecosActionPerformed
-        // TODO add your handling code here:
+         FrmListaDePreços listaPrecos = new FrmListaDePreços();
+    listaPrecos.setVisible(true);
     }//GEN-LAST:event_JBlistaPrecosActionPerformed
 
     /**
